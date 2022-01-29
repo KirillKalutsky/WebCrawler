@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4fXraqA3QBSfeJDtMD1PwT6P0XKljZWjhtGjkTtCdLhwM8qQ8E8H0oH8PNEFmKosyHXkNCK2bqZ/OfMVcWCCQg==",
+  "dgSpecHash": "ceeUlQdj+upA6H20YigmnIu2LuJfroWtwZZtYVc2TSjRvDE+QMoE6Zb4VX/GoNqMx1GYynWJxU6VsDwhXcW2/Q==",
   "success": true,
-  "projectFilePath": "D:\\c#\\WebCrawler\\WebCrawler\\WebCrawler\\WebCrawler.csproj",
+  "projectFilePath": "D:\\ВКР\\Soft\\WebCrawler\\WebCrawler\\WebCrawler.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Asus\\.nuget\\packages\\htmlagilitypack\\1.11.40\\htmlagilitypack.1.11.40.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",

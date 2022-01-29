@@ -19,6 +19,16 @@
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
+      },
+      "CoreModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/CoreModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CoreModels.dll": {}
+        }
       }
     }
   },
@@ -97,10 +107,16 @@
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
+    },
+    "CoreModels/1.0.0": {
+      "type": "project",
+      "path": "../CoreModels/CoreModels/CoreModels.csproj",
+      "msbuildProject": "../CoreModels/CoreModels/CoreModels.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "CoreModels >= 1.0.0",
       "HtmlAgilityPack >= 1.11.40",
       "Newtonsoft.Json >= 13.0.1"
     ]
@@ -114,11 +130,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\c#\\WebCrawler\\WebCrawler\\WebCrawler\\WebCrawler.csproj",
+      "projectUniqueName": "D:\\ВКР\\Soft\\WebCrawler\\WebCrawler\\WebCrawler.csproj",
       "projectName": "WebCrawler",
-      "projectPath": "D:\\c#\\WebCrawler\\WebCrawler\\WebCrawler\\WebCrawler.csproj",
+      "projectPath": "D:\\ВКР\\Soft\\WebCrawler\\WebCrawler\\WebCrawler.csproj",
       "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "D:\\c#\\WebCrawler\\WebCrawler\\WebCrawler\\obj\\",
+      "outputPath": "D:\\ВКР\\Soft\\WebCrawler\\WebCrawler\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -141,7 +157,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\ВКР\\Soft\\WebCrawler\\CoreModels\\CoreModels\\CoreModels.csproj": {
+              "projectPath": "D:\\ВКР\\Soft\\WebCrawler\\CoreModels\\CoreModels\\CoreModels.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
