@@ -24,5 +24,8 @@ namespace WebCrawler
         //метод который будет узменять состояние флага, при достижении определенных условий, определяемых в наследнике
         public abstract bool StopCrawl();
 
+        //id источника для соотношения с объектом из БД
+        public int SourseId { get; set; }
+
     }
 }

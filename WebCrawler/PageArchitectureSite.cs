@@ -8,6 +8,10 @@ namespace WebCrawler
 {
     public class PageArchitectureSite : ICrawlableSource
     {
+        public PageArchitectureSite(int sourseId)
+        {
+            SourseId = sourseId;
+        }
         public string StartUrl { get; set; }
         public string EndUrl { get; set; }
         public string LinkURL { get; set; }
@@ -16,7 +20,6 @@ namespace WebCrawler
 
         private string lastEventLink;
         private int? maxCountEvents;
-
 
         string currentEventLink;
         int currentSeanceCrawledEventCount;
@@ -50,6 +53,7 @@ namespace WebCrawler
                     var news = NewsParser.ParseHtmlPage(document, ParseEventProperties);
 
                     news.Link = p.Item2;
+                    news.IdSource = SourseId;
                     currentEventLink = page.Item2;
                     currentSeanceCrawledEventCount += 1;
                     isCrawl = StopCrawl();
