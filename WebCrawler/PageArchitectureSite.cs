@@ -8,10 +8,7 @@ namespace WebCrawler
 {
     public class PageArchitectureSite : ICrawlableSource
     {
-        public PageArchitectureSite(int sourseId)
-        {
-            SourseId = sourseId;
-        }
+        
         public string StartUrl { get; set; }
         public string EndUrl { get; set; }
         public string LinkURL { get; set; }
