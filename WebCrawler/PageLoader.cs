@@ -3,45 +3,59 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace WebCrawler
 {
     public class PageLoader
     {
-        private static readonly HttpClient httpClient = new HttpClient();
-        public static async Task<Tuple<HttpResponseMessage,string>> LoadPageAsync(string url, int numberOfAttempts = 5)
+        public static async Task<HttpResponseMessage> TrySendAsync(HttpClient httpClient, string address, HttpMethod httpMethod, string content = null)
         {
-            HttpResponseMessage result;
+            HttpResponseMessage responseRes;
             try
             {
-                result = await httpClient.GetAsync(url);
+                var request = new HttpRequestMessage(httpMethod, address);
+                if (content != null)
+                    request.Content = new StringContent(content, Encoding.UTF8, "application/json");
+                responseRes = await httpClient.SendAsync(request);
             }
-            catch
+            catch (HttpRequestException exp)
             {
-                Console.WriteLine("Ошибка при загрузке");
-                Debug.Print("Ошибка при загрузке");
-                result = new HttpResponseMessage();
-                result.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                throw exp;
             }
-            if (!result.IsSuccessStatusCode && numberOfAttempts > 0)
+
+            return responseRes;
+        }
+
+        public static async Task<HttpResponseMessage> LoadPageAsync(HttpClient httpClient, string url, HttpMethod method, int numberOfAttempts = 5, string content = null)
+        {
+            HttpResponseMessage result = null;
+            for (var i = 0; i < numberOfAttempts; i++)
             {
-                Console.WriteLine($"BadStatusCode {numberOfAttempts}");
-                Console.WriteLine($"{url}");
-                await Task.Delay(500);
-                result = (await LoadPageAsync(url, numberOfAttempts - 1)).Item1;
+                try
+                {
+                    result = await TrySendAsync(httpClient, url, method, content);
+                }
+                catch (Exception exc)
+                {
+                    throw exc;
+                }
+                if (result.IsSuccessStatusCode || numberOfAttempts == 0)
+                    break;
+
+                await Task.Delay(3);
             }
-            Console.WriteLine($"AllGood {numberOfAttempts}");
-            return Tuple.Create(result,url);
+            return result;
         }
 
 
 
-        public static async Task<IEnumerable<string>> GetPageElementAsync(string url, HtmlElement link)
+        public static async Task<IEnumerable<string>> GetPageElementAsync(HttpClient httpClient, string url, HtmlElement link)
         {
             var result = new List<string>();
 
-            var body = (await PageLoader.LoadPageAsync(url)).Item1;
+            var body = (await PageLoader.LoadPageAsync(httpClient, url, HttpMethod.Get));
 
             if (body.IsSuccessStatusCode)
             {
@@ -60,6 +74,32 @@ namespace WebCrawler
                 {
                     Console.WriteLine($"{url} : элементы не найдены");
                     Debug.Print($"{url} : элементы не найдены");
+                }
+            }
+            return result;
+        }
+
+        public static async Task<IEnumerable<string>> GetPageElementAsync(HttpResponseMessage body, HtmlElement link)
+        {
+            var result = new List<string>();
+
+            if (body.IsSuccessStatusCode)
+            {
+                var doc = new HtmlDocument();
+                doc.LoadHtml(await body.Content.ReadAsStringAsync());
+
+                var searchElements = doc.DocumentNode.SelectNodes(link.XPath);
+
+                if (searchElements != null)
+                    foreach (var e in searchElements)
+                    {
+                        var l = e.GetAttributeValue(link.AttributeName, "");
+                        result.Add(l);
+                    }
+                else
+                {
+                    Console.WriteLine($"{body} : элементы не найдены");
+                    Debug.Print($"{body} : элементы не найдены");
                 }
             }
             return result;

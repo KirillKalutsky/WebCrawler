@@ -21,7 +21,6 @@ D:\ВКР\Soft\WebCrawler\WebCrawler\bin\Debug\net5.0\WebCrawler.deps.json
 D:\ВКР\Soft\WebCrawler\WebCrawler\bin\Debug\net5.0\WebCrawler.runtimeconfig.json
 D:\ВКР\Soft\WebCrawler\WebCrawler\bin\Debug\net5.0\WebCrawler.runtimeconfig.dev.json
 D:\ВКР\Soft\WebCrawler\WebCrawler\bin\Debug\net5.0\WebCrawler.dll
-D:\ВКР\Soft\WebCrawler\WebCrawler\bin\Debug\net5.0\ref\WebCrawler.dll
 D:\ВКР\Soft\WebCrawler\WebCrawler\bin\Debug\net5.0\WebCrawler.pdb
 D:\ВКР\Soft\WebCrawler\WebCrawler\bin\Debug\net5.0\HtmlAgilityPack.dll
 D:\ВКР\Soft\WebCrawler\WebCrawler\bin\Debug\net5.0\Newtonsoft.Json.dll
@@ -35,3 +34,6 @@ D:\ВКР\Soft\WebCrawler\WebCrawler\obj\Debug\net5.0\WebCrawler.dll
 D:\ВКР\Soft\WebCrawler\WebCrawler\obj\Debug\net5.0\ref\WebCrawler.dll
 D:\ВКР\Soft\WebCrawler\WebCrawler\obj\Debug\net5.0\WebCrawler.pdb
 D:\ВКР\Soft\WebCrawler\WebCrawler\obj\Debug\net5.0\WebCrawler.genruntimeconfig.cache
+D:\ВКР\Soft\WebCrawler\WebCrawler\bin\Debug\net5.0\CoreModels.dll
+D:\ВКР\Soft\WebCrawler\WebCrawler\bin\Debug\net5.0\CoreModels.pdb
+D:\ВКР\Soft\WebCrawler\WebCrawler\obj\Debug\net5.0\refint\WebCrawler.dll

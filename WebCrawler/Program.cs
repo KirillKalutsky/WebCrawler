@@ -9,9 +9,9 @@ namespace WebCrawler
         static async Task Main(string[] args)
         {
             var crawler = new Crawler();
-            var sources = new List<Tuple<ICrawlableSource, string, int?>>()
+            var sources = new List<Tuple<CrawlableSource, string, int?>>()
             {
-                Tuple.Create<ICrawlableSource, string, int?>
+                Tuple.Create<CrawlableSource, string, int?>
                 (
                     new PageArchitectureSite()
                             {
