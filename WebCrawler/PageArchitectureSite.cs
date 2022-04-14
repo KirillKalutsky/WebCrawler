@@ -19,15 +19,13 @@ namespace WebCrawler
         public HtmlElement LinkElement { get; set; }
         public Dictionary<string, string> ParseEventProperties { get; set; }
 
-        private string lastEventLink;
         private int? maxCountEvents;
         private string currentEventLink;
         int currentSeanceCrawledEventCount;
 
-        public override async IAsyncEnumerable<Event> CrawlAsync(string lastLink, int? maxCountEvents, HttpClient httpClient)
+        public override async IAsyncEnumerable<Event> CrawlAsync(int? maxCountEvents, HttpClient httpClient)
         {
             log.Info("начало обхода сайта " + StartUrl);
-            lastEventLink = lastLink;
             this.maxCountEvents = maxCountEvents;
             currentSeanceCrawledEventCount = 0;
             var pageCounter = 1;

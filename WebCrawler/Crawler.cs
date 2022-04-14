@@ -22,11 +22,11 @@ namespace WebCrawler
         {
         }
 
-        public async IAsyncEnumerable<Event> StartAsync(IEnumerable<Tuple<CrawlableSource,string,int?>> sourcers)
+        public async IAsyncEnumerable<Event> StartAsync(IEnumerable<Tuple<CrawlableSource,int?>> sourcers)
         {
             logger.Info("Начало обхода");
             var sourceEnumerators = sourcers
-                .Select(e => e.Item1.CrawlAsync(e.Item2, e.Item3, clientFactory.CreateClient()).GetAsyncEnumerator())
+                .Select(e => e.Item1.CrawlAsync(e.Item2, clientFactory.CreateClient()).GetAsyncEnumerator())
                 .ToList();
 
             var dict = new Dictionary<Task<bool>, IAsyncEnumerator<Event>>();

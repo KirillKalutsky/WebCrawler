@@ -9,9 +9,9 @@ namespace WebCrawler
         static async Task Main(string[] args)
         {
             var crawler = new Crawler();
-            var sources = new List<Tuple<CrawlableSource, string, int?>>()
+            var sources = new List<Tuple<CrawlableSource, int?>>()
             {
-                Tuple.Create<CrawlableSource, string, int?>
+                Tuple.Create<CrawlableSource, int?>
                 (
                     new PageArchitectureSite()
                             {
@@ -31,7 +31,6 @@ namespace WebCrawler
                                     { "Title", ".//h1[@class='zagolovok1']" }
                                 }
                             },
-                    null,
                     100
                 ),
 

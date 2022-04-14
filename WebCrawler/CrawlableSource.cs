@@ -10,10 +10,10 @@ namespace WebCrawler
 {
     public abstract class CrawlableSource
     {
-        private string lastLink;
+        public string lastEventLink { get; set; }
         //главный метод обхода сайта, этот обход должен заканчиваться в определенный момент
         //сделаю флаг, "Crawl", пока он true то обход продолжается
-        public abstract IAsyncEnumerable<Event> CrawlAsync(string lastLink, int? maxCountEvents, HttpClient httpClient);
+        public abstract IAsyncEnumerable<Event> CrawlAsync(int? maxCountEvents, HttpClient httpClient);
 
         //флаг, пока он истина у нас продолжается обход сайта,
         //его состояние должно меняться в определенный момент, от наследника к наследнику этот момент может быть разным
