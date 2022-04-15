@@ -10,21 +10,15 @@ namespace WebCrawler
 {
     public class Crawler
     {
-
-        private readonly ILog logger;
         private readonly IHttpClientFactory clientFactory;
-        public Crawler(ILog logger, IHttpClientFactory clientFactory)
+        public Crawler(IHttpClientFactory clientFactory)
         {
-            this.logger = logger;
             this.clientFactory = clientFactory;
         }
-        public Crawler()
-        {
-        }
+        public Crawler() { }
 
         public async IAsyncEnumerable<Event> StartAsync(IEnumerable<Tuple<CrawlableSource,int?>> sourcers)
         {
-            logger.Info("Начало обхода");
             var sourceEnumerators = sourcers
                 .Select(e => e.Item1.CrawlAsync(e.Item2, clientFactory.CreateClient()).GetAsyncEnumerator())
                 .ToList();

@@ -28,7 +28,7 @@ namespace WebCrawler
             return responseRes;
         }
 
-        public static async Task<HttpResponseMessage> LoadPageAsync(HttpClient httpClient, string url, HttpMethod method, int numberOfAttempts = 5, string content = null)
+        public static async Task<HttpResponseMessage> LoopSendAsync(HttpClient httpClient, string url, HttpMethod method, int numberOfAttempts = 5, string content = null)
         {
             HttpResponseMessage result = null;
             for (var i = 0; i < numberOfAttempts; i++)
@@ -55,7 +55,7 @@ namespace WebCrawler
         {
             var result = new List<string>();
 
-            var body = (await PageLoader.LoadPageAsync(httpClient, url, HttpMethod.Get));
+            var body = (await PageLoader.LoopSendAsync(httpClient, url, HttpMethod.Get));
 
             if (body.IsSuccessStatusCode)
             {

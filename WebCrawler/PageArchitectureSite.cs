@@ -38,7 +38,7 @@ namespace WebCrawler
                 HttpResponseMessage page;
                 try
                 {
-                    page = await PageLoader.LoadPageAsync(httpClient, url, HttpMethod.Get);
+                    page = await PageLoader.LoopSendAsync(httpClient, url, HttpMethod.Get);
                 }
                 catch (Exception e)
                 {
@@ -68,7 +68,7 @@ namespace WebCrawler
                     Task<HttpResponseMessage> content;
                     try
                     {
-                        content = PageLoader.LoadPageAsync(httpClient, fullLink, HttpMethod.Get);
+                        content = PageLoader.LoopSendAsync(httpClient, fullLink, HttpMethod.Get);
                     }
                     catch (Exception e)
                     {
